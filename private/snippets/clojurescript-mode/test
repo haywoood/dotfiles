@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: test-file
+# key: test-file
+# --
+
+(:require [cljs.test :refer-macros [deftest is testing run-tests]])
+
+(comment
+  (enable-console-print!)
+  (run-tests))
