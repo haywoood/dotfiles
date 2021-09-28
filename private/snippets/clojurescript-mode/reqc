@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: reqc
-# key: reqc
-# --
-(:require [paper.two.core :as p :refer [let-css]]
-          [reagent.core :as r]
-          [lunar.styleguide.mixins :refer [with-mixins]])

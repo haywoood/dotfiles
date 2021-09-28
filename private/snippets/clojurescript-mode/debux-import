@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: debux-import
-# key: debux-import
-# --
-
-[debux.cs.core :as d :refer-macros [clog clogn clog clogn break]]
