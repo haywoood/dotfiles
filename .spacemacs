@@ -543,7 +543,20 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  
+  ;; replace / search with helm-swoop in Evil normal state
+  (evil-global-set-key 'normal "/" 'helm-swoop)
+  
+  (setq eshell-directory-name "~/.eshell")
+  (setq eshell-aliases-file "~/.eshell/alias")
+  
+  (add-to-list 'load-path "/usr/local/bin/elasticsearch")
+  (autoload 'es-mode "es-mode.el"
+    "Major mode for editing Elasticsearch queries" t)
+  (add-to-list 'auto-mode-alist '("\\.es$" . es-mode))
+
   (setq evil-move-beyond-eol t)
+  
   (define-key evil-visual-state-map "J"
     (concat ":m '>+1" (kbd "RET") "gv=gv"))
   (define-key evil-visual-state-map "K"
