@@ -49,8 +49,7 @@ This function should only modify configuration layer settings."
      multiple-cursors
      org
      (shell :variables
-             shell-default-height 30
-             shell-default-position 'bottom)
+            shell-default-shell 'eshell)
      spell-checking
      syntax-checking
      version-control
@@ -65,7 +64,9 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(es-mode
+                                      s
+                                      dash)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -543,20 +544,15 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  
   ;; replace / search with helm-swoop in Evil normal state
   (evil-global-set-key 'normal "/" 'helm-swoop)
-  
-  (setq eshell-directory-name "~/.eshell")
-  (setq eshell-aliases-file "~/.eshell/alias")
-  
+  (setq eshell-directory-name "~/dotfiles/.eshell")
+  (setq eshell-aliases-file "~/dotfiles/.eshell/alias")
   (add-to-list 'load-path "/usr/local/bin/elasticsearch")
   (autoload 'es-mode "es-mode.el"
     "Major mode for editing Elasticsearch queries" t)
   (add-to-list 'auto-mode-alist '("\\.es$" . es-mode))
-
   (setq evil-move-beyond-eol t)
-  
   (define-key evil-visual-state-map "J"
     (concat ":m '>+1" (kbd "RET") "gv=gv"))
   (define-key evil-visual-state-map "K"
