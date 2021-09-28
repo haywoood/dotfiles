@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ln -s .bash_profile ../.bash_profile
-ln -s .bashrc ../.bashrc
-ln -s .spacemacs ../.spacemacs
-cp .gitconfig ../
+ln -s $PWD/dotfiles/.bash_profile $PWD/.bash_profile
+ln -s $PWD/dotfiles/.bashrc $PWD/.bashrc
+ln -s $PWD/dotfiles/.spacemacs $PWD/.spacemacs
+ln -s $PWD/dotfiles/.gitconfig $PWD/.gitconfig
