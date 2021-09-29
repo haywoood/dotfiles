@@ -1,2 +1,3 @@
 .spacemacs.d/.spacemacs.env
-.eshell/history
+.eshell
+!.eshell/alias

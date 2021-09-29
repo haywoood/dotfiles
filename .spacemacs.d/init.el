@@ -40,7 +40,7 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; auto-completion
      ;; better-defaults
-     rust
+     (rust :variables rust-backend 'racer)
      emacs-lisp
      git
      helm
