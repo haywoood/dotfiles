@@ -548,6 +548,7 @@ before packages are loaded."
   (evil-global-set-key 'normal "/" 'helm-swoop)
   (setq eshell-directory-name "~/dotfiles/.eshell")
   (setq eshell-aliases-file "~/dotfiles/.eshell/alias")
+  (setq helm-show-completion-display-function #'helm-show-completion-default-display-function)
   (add-to-list 'load-path "/usr/local/bin/elasticsearch")
   (autoload 'es-mode "es-mode.el"
     "Major mode for editing Elasticsearch queries" t)
