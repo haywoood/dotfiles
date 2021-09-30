@@ -1,1 +1,3 @@
+alias k kubectl
+alias gcloud /Users/haywood/google-cloud-sdk/bin/gcloud
 alias es /home/ryan/elasticsearch/bin/elasticsearch
