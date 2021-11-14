@@ -1,3 +1,4 @@
-alias k kubectl
-alias gcloud /Users/haywood/google-cloud-sdk/bin/gcloud
+alias esscode vault read --field=code totp/code/cloud-infra
 alias es /home/ryan/elasticsearch/bin/elasticsearch
+alias gcloud /Users/haywood/google-cloud-sdk/bin/gcloud
+alias k kubectl
