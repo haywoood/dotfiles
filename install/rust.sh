@@ -6,3 +6,5 @@ rustup install nightly
 rustup default nightly
 rustup component add rust-src
 brew install rust-analyzer
+cargo install trunk
+rustup target add wasm32-unknown-unknown
