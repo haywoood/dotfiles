@@ -5,27 +5,25 @@ Personal dev environment: Alacritty + tmux + Doom Emacs, Clojure/Babashka stack.
 ## Quick Start
 
 ```bash
+# Install babashka first (everything else is automated)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install babashka
+
 git clone https://github.com/haywoood/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-./init.sh
+bb setup
 ```
 
-## Prerequisites
+`bb setup` installs brew packages, symlinks configs, installs bbin tools, and sets up Doom Emacs.
 
-```bash
-brew install emacs tmux babashka clojure clj-kondo
-brew install babashka/brew/bbin
-brew install fzf lazygit zoxide direnv overmind
-brew install --cask alacritty font-source-code-pro
+Or run individual tasks:
 
-# Doom Emacs
-git clone https://github.com/doomemacs/doomemacs ~/.config/emacs
-~/.config/emacs/bin/doom install
-
-# clojure-mcp-light (REPL eval + paren repair for AI coding assistants)
-bbin install https://github.com/bhauman/clojure-mcp-light.git --tag v0.2.1 --as clj-nrepl-eval --main-opts '["-m" "clojure-mcp-light.nrepl-eval"]'
-bbin install https://github.com/bhauman/clojure-mcp-light.git --tag v0.2.1 --as clj-paren-repair --main-opts '["-m" "clojure-mcp-light.paren-repair"]'
-```
+| Task | What it does |
+|---|---|
+| `bb link` | Symlink dotfiles to home directory |
+| `bb brew` | Install Homebrew packages |
+| `bb tools` | Install bbin tools (clojure-mcp-light) |
+| `bb doom` | Install or sync Doom Emacs |
 
 ## What's Included
 
@@ -33,7 +31,7 @@ bbin install https://github.com/bhauman/clojure-mcp-light.git --tag v0.2.1 --as 
 - **tmux** — `C-Space` prefix, popup tools, fzf session switching
 - **Alacritty** — Tomorrow Night theme, Source Code Pro 14
 - **Shell** — fzf, zoxide, direnv hooks
-- **Claude Code** — preferred Clojure/Babashka stack config
+- **Claude Code** — preferred Clojure/Babashka stack config + clojure-mcp-light hooks
 
 ## tmux Keybindings
 
