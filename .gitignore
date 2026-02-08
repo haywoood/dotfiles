@@ -1,3 +1,4 @@
 .DS_Store
 .eshell
 !.eshell/alias
+.clj-kondo/.cache
