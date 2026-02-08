@@ -1,0 +1,71 @@
+{:tasks
+ {link
+  {:doc "Symlink dotfiles to home directory"
+   :task
+   (let [home (System/getProperty "user.home")
+         dot  (str (babashka.fs/cwd))
+         link (fn [src dst]
+                (let [dst (str home "/" dst)
+                      target (str dot "/" src)]
+                  (babashka.fs/create-dirs (babashka.fs/parent dst))
+                  (cond
+                    (babashka.fs/sym-link? dst)
+                    (babashka.fs/delete dst)
+
+                    (babashka.fs/directory? dst)
+                    (babashka.fs/delete-tree dst)
+
+                    (babashka.fs/exists? dst)
+                    (babashka.fs/delete dst))
+                  (babashka.fs/create-sym-link dst target)
+                  (println "  " dst "->" src)))]
+     (println "Linking dotfiles...")
+     (link ".doom.d"                         ".doom.d")
+     (link ".tmux.conf"                      ".tmux.conf")
+     (link ".config/alacritty/alacritty.toml" ".config/alacritty/alacritty.toml")
+     (link ".gitconfig"                      ".gitconfig")
+     (link ".zprofile"                       ".zprofile")
+     (link ".zshrc"                          ".zshrc")
+     (link ".claude/CLAUDE.md"               ".claude/CLAUDE.md")
+     (link ".clj-kondo"                      ".clj-kondo")
+     (link ".lsp"                            ".lsp")
+     (println "Done."))}
+
+  brew
+  {:doc "Install Homebrew packages"
+   :task
+   (do
+     (println "Installing brew packages...")
+     (shell "brew install emacs tmux babashka clojure clj-kondo")
+     (shell "brew install babashka/brew/bbin")
+     (shell "brew install fzf lazygit zoxide direnv overmind")
+     (shell "brew install --cask alacritty font-source-code-pro")
+     (println "Done."))}
+
+  tools
+  {:doc "Install bbin tools (clojure-mcp-light)"
+   :task
+   (do
+     (println "Installing bbin tools...")
+     (shell "bbin install https://github.com/bhauman/clojure-mcp-light.git --tag v0.2.1")
+     (shell "bbin install https://github.com/bhauman/clojure-mcp-light.git --tag v0.2.1 --as clj-nrepl-eval --main-opts '[\" -m\" \"clojure-mcp-light.nrepl-eval\"]'")
+     (shell "bbin install https://github.com/bhauman/clojure-mcp-light.git --tag v0.2.1 --as clj-paren-repair --main-opts '[\" -m\" \"clojure-mcp-light.paren-repair\"]'")
+     (println "Done."))}
+
+  doom
+  {:doc "Install or sync Doom Emacs"
+   :task
+   (let [doom-dir (str (System/getProperty "user.home") "/.config/emacs")]
+     (if (babashka.fs/exists? doom-dir)
+       (do
+         (println "Doom exists, running sync...")
+         (shell (str doom-dir "/bin/doom sync")))
+       (do
+         (println "Installing Doom Emacs...")
+         (shell (str "git clone https://github.com/doomemacs/doomemacs " doom-dir))
+         (shell (str doom-dir "/bin/doom install")))))}
+
+  setup
+  {:doc "Full setup: brew, link, tools, doom"
+   :depends [brew link tools doom]
+   :task (println "\nSetup complete! Run: source ~/.zshrc")}}}
