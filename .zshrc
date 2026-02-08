@@ -35,3 +35,15 @@ dev() {
 # Completions
 autoload -Uz compinit
 compinit
+
+# List all local listening services
+alias ports='lsof -iTCP -sTCP:LISTEN -P -n | tail -n +2 | awk "{printf \"%-15s %-8s %s\n\", \$1, \$2, \$9}" | sort -t: -k2 -n | uniq'
+
+# fzf - Ctrl-R history, Ctrl-T files, Alt-C directories
+source <(fzf --zsh)
+
+# zoxide - smart cd (use 'z' instead of 'cd')
+eval "$(zoxide init zsh)"
+
+# direnv - auto-load .envrc per project
+eval "$(direnv hook zsh)"

@@ -6,9 +6,8 @@ DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 echo "Installing dotfiles from $DOTFILES_DIR"
 
-# Spacemacs
-ln -sf "$DOTFILES_DIR/.spacemacs.d" "$HOME/.spacemacs.d"
-export SPACEMACSDIR="$HOME/.spacemacs.d"
+# Doom Emacs
+ln -sfn "$DOTFILES_DIR/.doom.d" "$HOME/.doom.d"
 
 # tmux
 ln -sf "$DOTFILES_DIR/.tmux.conf" "$HOME/.tmux.conf"
@@ -29,13 +28,14 @@ mkdir -p "$HOME/.claude"
 ln -sf "$DOTFILES_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 
 # clj-kondo
-ln -sf "$DOTFILES_DIR/.clj-kondo" "$HOME/.clj-kondo"
+ln -sfn "$DOTFILES_DIR/.clj-kondo" "$HOME/.clj-kondo"
 
 # lsp
-ln -sf "$DOTFILES_DIR/.lsp" "$HOME/.lsp"
+ln -sfn "$DOTFILES_DIR/.lsp" "$HOME/.lsp"
 
 echo "Done! You may need to:"
-echo "  - Install Spacemacs: git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d"
+echo "  - Install Doom Emacs: git clone https://github.com/doomemacs/doomemacs ~/.config/emacs"
+echo "  - Run: ~/.config/emacs/bin/doom install"
 echo "  - Install Alacritty: brew install --cask alacritty"
 echo "  - Source your shell: source ~/.zshrc"
 echo "  - Reload tmux: tmux source-file ~/.tmux.conf"

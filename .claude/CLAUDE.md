@@ -1,6 +1,24 @@
 # Claude Code User Configuration
 
-## Dev Environment Startup
+## Preferred Stack
+
+When starting new projects, prefer this stack unless I specify otherwise:
+
+- **Language:** Clojure / Babashka
+- **Web:** Ring + Reitit (or bb's built-in http-server for lightweight stuff)
+- **Database:** JSONL flat files for simple apps, Datalevin for anything with real queries
+- **Templating:** Hiccup
+- **Task runner:** bb.edn tasks
+- **Process management:** Overmind + Procfile
+- **Per-project env:** direnv (.envrc)
+
+For scripting and automation, use Babashka — not Python, not shell scripts.
+
+## Dev Environment
+
+Terminal-first: Alacritty + tmux + Doom Emacs (`emacs -nw`)
+
+### Startup
 
 When asked to "start dev", "vibecode setup", or similar, first check if the tmux session already exists:
 
@@ -11,14 +29,14 @@ tmux list-panes -t dev:0 -F "#{pane_index}: #{pane_current_command}" 2>/dev/null
 
 If the session is already running with the proper layout, acknowledge it and continue.
 
-## Preferred Layout
+### Layout
 
-**Window 0 (editing)**: Claude Code + Spacemacs
+**Window 0 (editing)**: Claude Code + Doom Emacs
 ```
 ┌─────────────────────────────────────┐
 │           Claude Code               │
 ├─────────────────────────────────────┤
-│        Spacemacs (emacs -nw)        │
+│        Doom Emacs (emacs -nw)       │
 └─────────────────────────────────────┘
 ```
 
@@ -29,21 +47,10 @@ If the session is already running with the proper layout, acknowledge it and con
 └──────────────────┴──────────────────┘
 ```
 
-## Startup Commands
-
-```bash
-tmux new-session -d -s dev -n "editing"
-tmux split-window -t dev:editing -v "emacs -nw"
-tmux select-pane -t dev:editing.0
-# Add project-specific server commands to window 1
-tmux select-window -t dev:editing
-tmux attach -t dev
-```
-
-## Quick Reference
+### Quick Reference
 
 - **Window 0, Pane 0**: Claude Code (main)
-- **Window 0, Pane 1**: Spacemacs terminal (`emacs -nw`)
+- **Window 0, Pane 1**: Doom Emacs terminal (`emacs -nw`)
 - **Window 1**: Project servers
 
 To send commands: `tmux send-keys -t dev:{window}.{pane} "command" Enter`
