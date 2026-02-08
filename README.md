@@ -1,14 +1,6 @@
 # Dotfiles
 
-Personal development environment configuration.
-
-## What's Included
-
-- **Spacemacs** - Vim-style Emacs with Clojure, JS, and web dev support
-- **tmux** - Terminal multiplexer with Ctrl+Space prefix
-- **Alacritty** - GPU-accelerated terminal with Tomorrow Night theme
-- **Claude Code** - AI coding assistant configuration
-- **clj-kondo / LSP** - Clojure linting and language server config
+Personal dev environment: Alacritty + tmux + Doom Emacs, Clojure/Babashka stack.
 
 ## Quick Start
 
@@ -21,57 +13,30 @@ cd ~/dotfiles
 ## Prerequisites
 
 ```bash
-# Emacs
-brew install emacs
+brew install emacs tmux babashka clojure clj-kondo
+brew install fzf lazygit zoxide direnv overmind
+brew install --cask alacritty font-source-code-pro
 
-# Spacemacs
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-
-# Terminal
-brew install --cask alacritty
-
-# tmux
-brew install tmux
-
-# Fonts
-brew install --cask font-source-code-pro
-
-# Clojure tooling
-brew install clojure clj-kondo
+# Doom Emacs
+git clone https://github.com/doomemacs/doomemacs ~/.config/emacs
+~/.config/emacs/bin/doom install
 ```
 
-## Key Bindings
+## What's Included
 
-### tmux (prefix: Ctrl+Space)
+- **Doom Emacs** — tty-optimized, evil mode, CIDER, LSP, smartparens
+- **tmux** — `C-Space` prefix, popup tools, fzf session switching
+- **Alacritty** — Tomorrow Night theme, Source Code Pro 14
+- **Shell** — fzf, zoxide, direnv hooks
+- **Claude Code** — preferred Clojure/Babashka stack config
 
-- `prefix |` - vertical split
-- `prefix -` - horizontal split
-- `prefix 0-9` - switch windows
-- `prefix o` - cycle panes
-- `prefix z` - zoom pane
-- `prefix d` - detach
+## tmux Keybindings
 
-### Spacemacs
-
-- `SPC` - leader key
-- `/` - helm-swoop (search buffer)
-- `J/K` in visual mode - move lines
-- `, s c` - connect to CIDER REPL
-
-## Dev Environment
-
-The `dev` shell function launches a tmux session:
-
-```bash
-# Set your project directory
-export DEV_PROJECT_DIR=~/dev/myproject
-
-# Launch
-dev
-```
-
-Layout:
-```
-Window 0: Claude Code + Spacemacs
-Window 1: Build servers (customize in .zshrc)
-```
+| Key | Action |
+|---|---|
+| `C-Space g` | lazygit popup |
+| `C-Space t` | bb tasks picker |
+| `C-Space p` | show listening ports |
+| `C-Space s` | fzf session switcher |
+| `C-Space \|` | vertical split |
+| `C-Space -` | horizontal split |
