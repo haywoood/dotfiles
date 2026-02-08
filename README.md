@@ -14,12 +14,17 @@ cd ~/dotfiles
 
 ```bash
 brew install emacs tmux babashka clojure clj-kondo
+brew install babashka/brew/bbin
 brew install fzf lazygit zoxide direnv overmind
 brew install --cask alacritty font-source-code-pro
 
 # Doom Emacs
 git clone https://github.com/doomemacs/doomemacs ~/.config/emacs
 ~/.config/emacs/bin/doom install
+
+# clojure-mcp-light (REPL eval + paren repair for AI coding assistants)
+bbin install https://github.com/bhauman/clojure-mcp-light.git --tag v0.2.1 --as clj-nrepl-eval --main-opts '["-m" "clojure-mcp-light.nrepl-eval"]'
+bbin install https://github.com/bhauman/clojure-mcp-light.git --tag v0.2.1 --as clj-paren-repair --main-opts '["-m" "clojure-mcp-light.paren-repair"]'
 ```
 
 ## What's Included
