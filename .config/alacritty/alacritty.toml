@@ -10,11 +10,11 @@ option_as_alt = "Both"
 size = 14.0
 
 [font.normal]
-family = "Source Code Pro"
+family = "JetBrains Mono"
 style = "Regular"
 
 [font.bold]
-family = "Source Code Pro"
+family = "JetBrains Mono"
 style = "Bold"
 
 [scrolling]
