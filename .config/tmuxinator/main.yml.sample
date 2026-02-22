@@ -1,0 +1,9 @@
+name: main
+root: ~/
+
+windows:
+  - local:
+      layout: even-horizontal
+      panes:
+        - claude --dangerously-skip-permissions
+        - zsh
